@@ -7,9 +7,8 @@ ENV ARCH     linux-amd64
 ENV RELEASE  strelaysrv-${ARCH}-${VERSION}
 
 # Busybox wget needs TLS support, curl is less painful to get working
-RUN apk add --update curl && \
+RUN apk add --update ca-certificates curl && \
     curl -L https://build.syncthing.net/job/strelaysrv/lastSuccessfulBuild/artifact/${RELEASE}.tar.gz | tar xzf - && \
-    apk del --rdepends curl && \
     mv ${RELEASE}/strelaysrv /usr/local/bin/ && \
     rm -rf ${RELEASE} && \
     rm -rf /tmp/* /var/tmp/* /var/cache/apk/* /var/cache/distfiles/*
