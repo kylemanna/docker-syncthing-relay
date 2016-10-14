@@ -19,7 +19,7 @@ Extensively tested on [Digital Ocean $5/mo node](http://do.co/2d7vkfJ)
 
 Just run:
 
-    docker run --rm -it -p 22067:22067 -p 22070:22070 kylemanna/syncthing-relay
+    docker run --rm -p 22067:22067 -p 22070:22070 kylemanna/syncthing-relay
 
 Verify your server shows up at http://relays.syncthing.net/
 
