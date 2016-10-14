@@ -5,11 +5,12 @@
 [![Docker Pulls](https://img.shields.io/docker/pulls/kylemanna/syncthing-relay.svg)](https://hub.docker.com/r/kylemanna/syncthing-relay/)
 [![ImageLayers](https://images.microbadger.com/badges/image/kylemanna/syncthing-relay.svg)](https://microbadger.com/#/images/kylemanna/syncthing-relay)
 
+## Overview
 Syncthing Relay to help Syncthing clients relay data when they can't communicate directly due to things like NAT routers.  More documentation at https://docs.syncthing.net/users/relaying.html
 
 Extensively tested on [Digital Ocean $5/mo node](http://do.co/2d7vkfJ)
 
-#### Upstream Links
+## Upstream Links
 
 * Docker Registry @ [kylemanna/openvpn](https://hub.docker.com/r/kylemanna/syncthing-relay/)
 * GitHub @ [kylemanna/docker-openvpn](https://github.com/kylemanna/docker-syncthing-relay)
@@ -21,3 +22,14 @@ Just run:
     docker run --rm -it -p 22067:22067 -p 22070:22070 kylemanna/syncthing-relay
 
 Verify your server shows up at http://relays.syncthing.net/
+
+## Using Systemd to Auto Start the Docker Container
+
+Here's the quick start guide for setting up a systemd service that will listen on the defualt ports and start at boot time.  It will also attempt to pull down image updates each time the service starts and automatically restart after 10 seconds if the process exits.  This Docker container preserves no state across starts.
+
+    cd /etc/systemd/system
+    sudo curl -O https://raw.githubusercontent.com/kylemanna/docker-syncthing-relay/master/init/docker-syncthing-relay.service
+    sudo systemctl daemon-reload
+    sudo systemctl start docker-syncthing-relay.service
+    sudo systemctl status docker-syncthing-relay.service
+    sudo systemctl enable docker-syncthing-relay.service
