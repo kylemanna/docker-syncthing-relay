@@ -2,13 +2,15 @@ FROM alpine:latest
 MAINTAINER Kyle Manna <kyle@kylemanna.com>
 
 # Get upstream builds from: https://build.syncthing.net/job/strelaysrv/lastSuccessfulBuild/artifact/
-ENV VERSION  v0.14.8+11-g29ccf10
+ENV NAME     strelaysrv
+ENV JOB      216
+ENV VERSION  v0.14.8+13-g05c37e5
 ENV ARCH     linux-amd64
-ENV RELEASE  strelaysrv-${ARCH}-${VERSION}
+ENV RELEASE  ${NAME}-${ARCH}-${VERSION}
 
 # Busybox wget needs TLS support, curl is less painful to get working
 RUN apk add --update ca-certificates curl && \
-    curl -L https://build.syncthing.net/job/strelaysrv/lastSuccessfulBuild/artifact/${RELEASE}.tar.gz | tar xzf - && \
+    curl -L https://build.syncthing.net/job/${NAME}/${JOB}/artifact/${RELEASE}.tar.gz | tar xzf - && \
     mv ${RELEASE}/strelaysrv /usr/local/bin/ && \
     rm -rf ${RELEASE} && \
     rm -rf /tmp/* /var/tmp/* /var/cache/apk/* /var/cache/distfiles/*
