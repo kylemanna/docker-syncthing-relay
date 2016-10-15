@@ -6,7 +6,9 @@
 [![ImageLayers](https://images.microbadger.com/badges/image/kylemanna/syncthing-relay.svg)](https://microbadger.com/#/images/kylemanna/syncthing-relay)
 
 ## Overview
-Syncthing Relay to help Syncthing clients relay data when they can't communicate directly due to things like NAT routers.  More documentation at https://docs.syncthing.net/users/relaying.html
+Syncthing Relay to help Syncthing clients relay data when they can't communicate directly due to things like NAT routers and firewalls blocking inbound TCP connections.
+
+More detailed description on [my blog](https://blog.kylemanna.com/sharing/syncthing-relay-docker-container/).
 
 Extensively tested on [Digital Ocean $5/mo node](http://do.co/2d7vkfJ)
 
