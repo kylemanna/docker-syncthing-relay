@@ -32,6 +32,5 @@ Here's the quick start guide for setting up a systemd service that will listen o
     cd /etc/systemd/system
     sudo curl -O https://raw.githubusercontent.com/kylemanna/docker-syncthing-relay/master/init/docker-syncthing-relay.service
     sudo systemctl daemon-reload
-    sudo systemctl start docker-syncthing-relay.service
+    sudo systemctl enable --now docker-syncthing-relay.service
     sudo systemctl status docker-syncthing-relay.service
-    sudo systemctl enable docker-syncthing-relay.service
