@@ -3,8 +3,8 @@ MAINTAINER Kyle Manna <kyle@kylemanna.com>
 
 # Get upstream builds from: https://build.syncthing.net/job/strelaysrv/lastSuccessfulBuild/artifact/
 ENV NAME     strelaysrv
-ENV JOB      696
-ENV VERSION  v0.14.28+18-g3522d45
+ENV JOB      791
+ENV VERSION  v0.14.32-rc.2+7-gb75c9f2
 ENV ARCH     linux-amd64
 ENV RELEASE  ${NAME}-${ARCH}-${VERSION}
 
