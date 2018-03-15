@@ -1,7 +1,7 @@
 FROM golang:alpine
 LABEL maintainer="Kyle Manna <kyle@kylemanna.com>"
 
-ENV PKGVER   0.14.40
+ENV PKGVER   0.14.45
 
 # Busybox wget needs TLS support, curl is less painful to get working
 RUN apk add --update ca-certificates curl && \
