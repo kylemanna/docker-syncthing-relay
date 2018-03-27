@@ -25,6 +25,11 @@ Just run:
 
 Verify your server shows up at http://relays.syncthing.net/
 
+Or private relay:
+
+    docker run --rm -p 22067:22067 -p 22070:22070 kylemanna/syncthing-relay -pools=""
+
+
 ## Using Systemd to Auto Start the Docker Container
 
 Here's the quick start guide for setting up a systemd service that will listen on the defualt ports and start at boot time.  It will also attempt to pull down image updates each time the service starts and automatically restart after 10 seconds if the process exits.  This Docker container preserves no state across starts.
