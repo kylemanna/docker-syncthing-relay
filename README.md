@@ -29,6 +29,21 @@ Or private relay:
 
     docker run --rm -p 22067:22067 -p 22070:22070 kylemanna/syncthing-relay -pools=""
 
+## Private relays and persistent keys
+
+When using the commands above, docker will remove the old container once it's no longer running. This is fine for public relays where the key does not matter, but becomes impractical for private relays where the URL must contain the key signature.
+
+For those using private relays, it may be a good idea to use persistent storage for the certificate. To that effect, the first step is to create a volume with the command below (only needs to be done once):
+
+    docker volume create syncthing-relay
+    
+Then run the container mapping the `/relaysrv` directory into the volume:
+
+    docker run -p 22067:22067 -p 22070:22070 --mount source=syncthing-relay,target=/relaysrv -d kylemanna/syncthing-relay -pools=""
+
+## Automatically restarting the container on reboot
+
+To automatically restart the container after a host reboot, replace the `--rm` option in any of the docker invocations above with `--restart=always`. This is a simple solution for those who want to have a relay server that survives host restarts but prefer not to deal with systemd.
 
 ## Using Systemd to Auto Start the Docker Container
 
