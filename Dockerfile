@@ -1,5 +1,5 @@
 FROM golang:alpine AS builder
-LABEL maintainer="Kyle Manna <kyle@kylemanna.com>"
+LABEL maintainer="Miha Cernetic <cernetic.miha@gmail.com>"
 
 ENV PKGVER 1.23.2
 

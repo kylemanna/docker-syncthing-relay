@@ -1,33 +1,36 @@
-# Syncthing Relay Docker Image 
+# Syncthing Relay Docker Imageq
 
-[![Build Status](https://travis-ci.org/kylemanna/docker-syncthing-relay.svg)](https://travis-ci.org/kylemanna/docker-syncthing-relay)
-[![Docker Stars](https://img.shields.io/docker/stars/kylemanna/syncthing-relay.svg)](https://hub.docker.com/r/kylemanna/syncthing-relay/)
-[![Docker Pulls](https://img.shields.io/docker/pulls/kylemanna/syncthing-relay.svg)](https://hub.docker.com/r/kylemanna/syncthing-relay/)
-[![ImageLayers](https://images.microbadger.com/badges/image/kylemanna/syncthing-relay.svg)](https://microbadger.com/#/images/kylemanna/syncthing-relay)
+[![Docker Stars](https://img.shields.io/docker/stars/migel0/syncthing-relay.svg)](https://hub.docker.com/r/migel0/syncthing-relay/)
+[![Docker Pulls](https://img.shields.io/docker/pulls/migel0/syncthing-relay.svg)](https://hub.docker.com/r/migel0/syncthing-relay/)
 
 ## Overview
+
 Syncthing Relay to help Syncthing clients relay data when they can't communicate directly due to things like NAT routers and firewalls blocking inbound TCP connections.
 
-More detailed description on [my blog](https://blog.kylemanna.com/sharing/syncthing-relay-docker-container/).
+More detailed description on the [original author's blog](https://blog.kylemanna.com/sharing/syncthing-relay-docker-container/).
 
 Extensively tested on [Digital Ocean $5/mo node](http://do.co/2d7vkfJ)
 
 ## Upstream Links
 
-* Docker Registry @ [kylemanna/openvpn](https://hub.docker.com/r/kylemanna/syncthing-relay/)
-* GitHub @ [kylemanna/docker-openvpn](https://github.com/kylemanna/docker-syncthing-relay)
+- Docker Registry @ [kylemanna/openvpn](https://hub.docker.com/repository/docker/migel0/syncthing-relay//)
+- GitHub @ [migelo/docker-syncthing-relay](https://github.com/Migelo/docker-syncthing-relay)
 
 ## Quick Start
 
 Just run:
 
-    docker run --rm -p 22067:22067 -p 22070:22070 kylemanna/syncthing-relay
+```bash
+docker run --rm -p 22067:22067 -p 22070:22070 migel0/syncthing-relay
+```
 
-Verify your server shows up at http://relays.syncthing.net/
+Verify your server shows up at <http://relays.syncthing.net/>
 
 Or private relay:
 
-    docker run --rm -p 22067:22067 -p 22070:22070 kylemanna/syncthing-relay -pools=""
+```bash
+docker run --rm -p 22067:22067 -p 22070:22070 migel0/syncthing-relay -pools=""
+```
 
 ## Private relays and persistent keys
 
@@ -35,11 +38,15 @@ When using the commands above, docker will remove the old container once it's no
 
 For those using private relays, it may be a good idea to use persistent storage for the certificate. To that effect, the first step is to create a volume with the command below (only needs to be done once):
 
-    docker volume create syncthing-relay
-    
+```bash
+docker volume create syncthing-relay
+```
+
 Then run the container mapping the `/relaysrv` directory into the volume:
 
-    docker run -p 22067:22067 -p 22070:22070 --mount source=syncthing-relay,target=/relaysrv -d kylemanna/syncthing-relay -pools=""
+```bash
+docker run -p 22067:22067 -p 22070:22070 --mount source=syncthing-relay,target=/relaysrv -d kylemanna/syncthing-relay -pools=""
+```
 
 ## Automatically restarting the container on reboot
 
@@ -47,10 +54,12 @@ To automatically restart the container after a host reboot, replace the `--rm` o
 
 ## Using Systemd to Auto Start the Docker Container
 
-Here's the quick start guide for setting up a systemd service that will listen on the defualt ports and start at boot time.  It will also attempt to pull down image updates each time the service starts and automatically restart after 10 seconds if the process exits.  This Docker container preserves no state across starts.
+Here's the quick start guide for setting up a systemd service that will listen on the defualt ports and start at boot time.  It will also attempt to pull down image updates each time the service starts and automatically restart after 10 seconds if the process exits. This Docker container preserves no state across starts.
 
-    cd /etc/systemd/system
-    sudo curl -O https://raw.githubusercontent.com/kylemanna/docker-syncthing-relay/master/init/docker-syncthing-relay.service
-    sudo systemctl daemon-reload
-    sudo systemctl enable --now docker-syncthing-relay.service
-    sudo systemctl status docker-syncthing-relay.service
+```bash
+cd /etc/systemd/system
+sudo curl -O https://raw.githubusercontent.com/migelo/docker-syncthing-relay/main/init/docker-syncthing-relay.service
+sudo systemctl daemon-reload
+sudo systemctl enable --now docker-syncthing-relay.service
+sudo systemctl status docker-syncthing-relay.service
+```
