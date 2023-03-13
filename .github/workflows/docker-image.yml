@@ -1,34 +1,40 @@
 name: Docker Image CI
 
-# on:
-#   push:
+on:
+  push:
 #     branches: [ "main" ]
-#   pull_request:
+  pull_request:
 #     branches: [ "main" ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
+      - uses: actions/checkout@v2
+      - name: Set variables
+        id: vars
+        run: |
+          PKGVER=$(grep ENV Dockerfile | cut -d" " -f 3)
+          echo "PKGVER=$PKGVER" >> $GITHUB_ENV
+      -
+        name: Checkout
         uses: actions/checkout@v3
-      - name: Set up QEMU
-        uses: docker/setup-qemu-action@v2
-        with:
-          platforms: 'arm64,arm'
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v2
-      - name: Login to DockerHub
+      -
+        name: Login to Docker Hub
+        if: github.event_name != 'pull_request'
         uses: docker/login-action@v2
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-      - name: Build and push
-        uses: docker/build-push-action@v3
+      -
+        name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+      -
+        name: Build and push
+        uses: docker/build-push-action@v4
         with:
-          push: true
-          tags: migel0/syncthing-relay:$(date +%s)
-
-    # - uses: actions/checkout@v3
-    # - name: Build the Docker image
-    #   run: docker build . --file Dockerfile --tag syncthing-relay:$(date +%s)
+          context: .
+          file: ./Dockerfile
+          platforms: linux/amd64,linux/arm64
+          push: ${{ github.event_name != 'pull_request' }}
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/syncthing-relay:${{ env.PKGVER }},${{ secrets.DOCKERHUB_USERNAME }}/syncthing-relay:latest
