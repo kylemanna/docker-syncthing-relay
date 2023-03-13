@@ -1,6 +1,6 @@
 [Unit]
 Description=Syncthing Relay Docker Container
-Documentation=https://github.com/kylemanna/docker-syncthing-relay
+Documentation=https://github.com/migelo/docker-syncthing-relay
 After=network.target docker.socket
 Requires=docker.socket
 
@@ -8,7 +8,7 @@ Requires=docker.socket
 RestartSec=10
 Restart=always
 
-Environment="IMG=kylemanna/syncthing-relay:latest"
+Environment="IMG=migel0/syncthing-relay:latest"
 Environment="NAME=syncthing-relay"
 Environment="PORT_DATA=22067:22067/tcp"
 Environment="PORT_STAT=22070:22070/tcp"
