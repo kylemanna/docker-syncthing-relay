@@ -1,0 +1,20 @@
+services:
+  syncthing-relay:
+    image: migel0/syncthing-relay:latest
+    restart: unless-stopped
+    ports:
+      - "22067:22067/tcp"
+      - "22070:22070/tcp"
+    networks:
+      - local
+    labels:
+      - "traefik.enable=false"
+    volumes:
+      - "syncthing-relay:/relaysrv"
+    command: -keys /relaysrv -listen ":22067" -provided-by changeMe  
+
+volumes:
+  syncthing-relay:
+
+networks:
+  local:

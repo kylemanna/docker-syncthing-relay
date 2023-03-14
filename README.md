@@ -1,4 +1,4 @@
-# Syncthing Relay Docker Imageq
+# Syncthing Relay Docker Image
 
 [![Docker Stars](https://img.shields.io/docker/stars/migel0/syncthing-relay.svg)](https://hub.docker.com/r/migel0/syncthing-relay/)
 [![Docker Pulls](https://img.shields.io/docker/pulls/migel0/syncthing-relay.svg)](https://hub.docker.com/r/migel0/syncthing-relay/)
@@ -13,7 +13,7 @@ Extensively tested on [Digital Ocean $5/mo node](http://do.co/2d7vkfJ)
 
 ## Upstream Links
 
-- Docker Registry @ [kylemanna/openvpn](https://hub.docker.com/repository/docker/migel0/syncthing-relay//)
+- Docker Registry @ [migel0/syncthing-relay](https://hub.docker.com/repository/docker/migel0/syncthing-relay//)
 - GitHub @ [migelo/docker-syncthing-relay](https://github.com/Migelo/docker-syncthing-relay)
 
 ## Quick Start
@@ -45,7 +45,7 @@ docker volume create syncthing-relay
 Then run the container mapping the `/relaysrv` directory into the volume:
 
 ```bash
-docker run -p 22067:22067 -p 22070:22070 --mount source=syncthing-relay,target=/relaysrv -d kylemanna/syncthing-relay -pools=""
+docker run -p 22067:22067 -p 22070:22070 --mount source=syncthing-relay,target=/relaysrv -d migel0/syncthing-relay -pools=""
 ```
 
 ## Automatically restarting the container on reboot
