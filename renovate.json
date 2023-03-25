@@ -1,17 +1,7 @@
 {
+    "$schema": "https://docs.renovatebot.com/renovate-schema.json",
     "extends": [
-        "Migelo/docker-syncthing-relay"
+        "config:base"
     ],
-    "packageRules": [
-        {
-            "updateTypes": [
-                "semver:minor",
-                "semver:major"
-            ],
-            "automerge": false
-        }
-    ],
-    "renovate": {
-        "renovateFork": true
-    }
+    "includeForks": true
 }
