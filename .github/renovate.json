@@ -1,0 +1,14 @@
+{
+    "extends": [
+        "Migelo/docker-syncthing-relay"
+    ],
+    "packageRules": [
+        {
+            "updateTypes": [
+                "semver:minor",
+                "semver:major"
+            ],
+            "automerge": false
+        }
+    ]
+}
