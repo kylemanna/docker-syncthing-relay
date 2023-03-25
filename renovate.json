@@ -12,6 +12,6 @@
         }
     ],
     "renovate": {
-        "enableForks": true
+        "renovateFork": true
     }
 }
