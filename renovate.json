@@ -10,5 +10,8 @@
             ],
             "automerge": false
         }
-    ]
+    ],
+    "renovate": {
+        "enableForks": true
+    }
 }
