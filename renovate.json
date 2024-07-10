@@ -28,5 +28,13 @@
       "automergeType": "pr",
       "platformAutomerge": true
     }
+  ],
+  "regexManagers": [
+    {
+      "fileMatch": ["^Dockerfile$"],
+      "matchStrings": ["PKGVER \\s*(?<currentValue>.*?)\\n"],
+      "depNameTemplate": "syncthing/syncthing",
+      "datasourceTemplate": "github-releases"
+    }
   ]
 }
